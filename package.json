@@ -1,0 +1,22 @@
+{
+  "name": "wxml-layout-loader",
+  "version": "1.0.0",
+  "description": "wxml layout loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beven91/wxml-layout-loader.git"
+  },
+  "keywords": [
+    "wxml",
+    "layout"
+  ],
+  "author": "Beven",
+  "license": "ISC",
+  "dependencies": {
+    "loader-utils": "^1.1.0"
+  }
+}
