@@ -57,7 +57,10 @@ function searchPages(appConfig, appRoot) {
   var subPackages = appConfig.subPackages || {};
   pages = pages.concat(appConfig.pages || []);
   subPackages.forEach(function (package) {
-    pages = pages.concat(package.pages || [])
+    const subPages = (package.pages || []).map((page) => {
+      return package.root + '/' + page;
+    })
+    pages = pages.concat(subPages)
   })
   return pages.map(function (file) {
     return path.join(appRoot, file).replace(/\\/g, '/');
