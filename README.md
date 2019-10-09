@@ -10,17 +10,27 @@
 
 当然可以通过设置`loader.options.holder`参数自定义占位符
 
+#### 如何附加母版页?
+
+- 尝试渲染`webpack`搜索的所有`wxml`文件进行渲染
+
+- 根据`app.json`中配置的`pages`与`subPackages[N].pages`来套用`options.layout`指定的`wxml`母版页 从而过滤掉非页面的`wxml`文件
+
 ## 二、安装
 
     npm install wxml-layout-loader --save
 
 ## 三、Webpack使用
 
+> layout.wxml
+
 ```xml
   <view class="layout">
       $slot$
   </view>
 ```
+
+> webpack.config.js
 
 ```js
 module.exports = {
