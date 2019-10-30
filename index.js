@@ -18,7 +18,7 @@ module.exports = function (content) {
   var pageName = (segments.dir + '/' + segments.name).replace(/\\/g, '/');
   var options = loaderUtils.getOptions(this) || {};
   var layout = options.layout;
-  var pages = getAppPages(options.app);
+  var pages = getAppPages(options.app, options.platform);
   var isPage = pages.indexOf(pageName) > -1;
   if (typeof layout === 'function') {
     layout = layout(this.resourcePath);
@@ -33,7 +33,7 @@ module.exports = function (content) {
  * 已缓存模式--根据app.json文件获取小程序正在使用的所有的页面
  * @param {String} app app.json文件路径 
  */
-function getAppPages(app) {
+function getAppPages(app, platform) {
   if (!fs.existsSync(app)) {
     return [];
   }
@@ -42,7 +42,12 @@ function getAppPages(app) {
   if (lastModifyTime != stat.mtime || !cachePages) {
     lastModifyTime = stat.mtime;
     var appConfig = JSON.parse(fs.readFileSync(app));
-    cachePages = searchPages(appConfig, appRoot);
+    cachePages = [];
+    const pages = searchPages(appConfig, appRoot);
+    pages.forEach((page) => {
+      cachePages.push(page);
+      cachePages.push(page + '.' + platform)
+    })
   }
   return cachePages;
 }
