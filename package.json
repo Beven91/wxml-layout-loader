@@ -1,6 +1,6 @@
 {
   "name": "wxml-layout-loader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "wxml layout loader",
   "main": "index.js",
   "scripts": {
